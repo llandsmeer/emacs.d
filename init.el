@@ -93,3 +93,4 @@
 (define-key evil-motion-state-map (kbd "C-c c") 'evilnc-comment-operator)
 
 (require 'evil-magit)
+(global-set-key (kbd "C-SPC") 'magit-commit)
