@@ -9,13 +9,18 @@
 
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
-                        python undo-tree mustang-theme))
+                        python undo-tree rust-mode racer magit
+                        mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
   (when (not (package-installed-p package))
     (package-install package)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs/themes")
+
+(load-theme 'flatui t)
+
+(require 'solarized)
 (load-theme 'mustang t)
 
 ;; (let ((default-directory "~/.emacs.d/lisp/"))
@@ -38,12 +43,23 @@
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
 
+(require 'python)
+(add-hook 'python-mode 'run-python)
+
 (require 'undo-tree)
 (setq undo-tree-auto-save-history 1)
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
+(require 'racer)
+(add-hook 'rust-mode-hook #'racer-mode)
+
 (require 'company)
+(setq company-tooltip-align-annotations t)
+(setq company-idle-delay 1)
+(setq company-minimum-prefix-length 1)
 (add-hook 'after-init-hook 'global-company-mode)
+
+(add-hook 'prog-mode-hook #'eldoc-mode)
 
 (require 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.html\\'" . web-mode))
@@ -77,6 +93,3 @@
 
 (require 'evil-nerd-commenter)
 (define-key evil-motion-state-map (kbd "C-c c") 'evilnc-comment-operator)
-
-; (require 'rainbow-identifiers)
-; (add-hook 'prog-mode-hook 'rainbow-identifiers-mode)
