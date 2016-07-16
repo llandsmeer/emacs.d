@@ -9,7 +9,7 @@
 
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
-                        python undo-tree rust-mode racer magit
+                        python undo-tree rust-mode racer magit evil-magit
                         mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
@@ -17,8 +17,6 @@
     (package-install package)))
 
 (add-to-list 'custom-theme-load-path "~/.emacs/themes")
-
-(load-theme 'flatui t)
 
 (require 'solarized)
 (load-theme 'mustang t)
@@ -93,3 +91,5 @@
 
 (require 'evil-nerd-commenter)
 (define-key evil-motion-state-map (kbd "C-c c") 'evilnc-comment-operator)
+
+(require 'evil-magit)
