@@ -10,6 +10,7 @@
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
+                        auctex
                         mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
@@ -21,8 +22,8 @@
 (require 'solarized)
 (load-theme 'mustang t)
 
-;; (let ((default-directory "~/.emacs.d/lisp/"))
-;;   (normal-top-level-add-subdirs-to-load-path))
+(let ((default-directory "~/.emacs.d/lisp/"))
+  (normal-top-level-add-subdirs-to-load-path))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -94,3 +95,7 @@
 
 (require 'evil-magit)
 (global-set-key (kbd "C-SPC") 'magit-commit)
+
+;; auctex
+(add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
+(add-hook 'LaTeX-mode-hook (lambda () (TeX-fold-mode 1)))
