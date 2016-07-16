@@ -9,7 +9,7 @@
 
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
-                        python undo-tree))
+                        python undo-tree mustang-theme))
 
 (dolist (package packages)
   (when (not (package-installed-p package))
