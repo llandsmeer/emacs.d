@@ -41,9 +41,13 @@
 (ido-mode 1)
 (setq ido-enable-flex-matching t)
 (setq ido-everywhere t)
+(setq inhibit-startup-screen t)
+(setq initial-scratch-message nil)
 
 (require 'python)
 (add-hook 'python-mode 'run-python)
+(setq python-shell-interpreter "ipython3")
+(setq python-shell-interpreter-args "-i")
 
 (require 'undo-tree)
 (setq undo-tree-auto-save-history 1)
@@ -66,7 +70,6 @@
 
 (require 'evil)
 (evil-mode 1)
-(define-key evil-motion-state-map ":" 'execute-extended-command)
 (define-key evil-motion-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map " " 'save-buffer)
 
