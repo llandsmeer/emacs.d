@@ -44,6 +44,7 @@
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
 (setq use-dialog-box nil)
+(setq-default show-trailing-whitespace t)
 
 (require 'python)
 (add-hook 'python-mode 'run-python)
