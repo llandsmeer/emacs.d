@@ -43,6 +43,7 @@
 (setq ido-everywhere t)
 (setq inhibit-startup-screen t)
 (setq initial-scratch-message nil)
+(setq use-dialog-box nil)
 
 (require 'python)
 (add-hook 'python-mode 'run-python)
@@ -58,7 +59,7 @@
 
 (require 'company)
 (setq company-tooltip-align-annotations t)
-(setq company-idle-delay 1)
+(setq company-idle-delay 0)
 (setq company-minimum-prefix-length 1)
 (add-hook 'after-init-hook 'global-company-mode)
 
@@ -70,6 +71,7 @@
 
 (require 'evil)
 (evil-mode 1)
+;; (evil-set-initial-state 'term-mode 'emacs)
 (define-key evil-motion-state-map ";" 'evil-ex)
 (define-key evil-motion-state-map " " 'save-buffer)
 
