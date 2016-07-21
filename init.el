@@ -10,7 +10,7 @@
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
-                        auctex
+                        auctex haskell-mode 
                         mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
@@ -104,3 +104,9 @@
 ;; auctex
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
 (add-hook 'LaTeX-mode-hook (lambda () (TeX-fold-mode 1)))
+
+;; haskell-mode
+(require 'haskell-interactive-mode)
+(require 'haskell-process)
+(add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+(define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
