@@ -10,7 +10,7 @@
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
-                        auctex haskell-mode 
+                        auctex haskell-mode
                         mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
@@ -35,6 +35,7 @@
 (setq show-paren-delay 0)
 (show-paren-mode 1)
 (electric-pair-mode 1)
+(setq electric-pair-preserve-balance nil)
 (which-function-mode 1)
 (fset 'yes-or-no-p 'y-or-n-p)
 (setq backup-directory-alist '(("." . "~/.emacs.d/backup")))
