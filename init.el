@@ -116,3 +116,10 @@
 (require 'haskell-process)
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 (define-key haskell-mode-map (kbd "C-c C-c") 'haskell-compile)
+
+;; elscreen
+(elscreen-start)
+(define-key evil-normal-state-map (kbd "C-w t") 'elscreen-create)
+(define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill)
+(define-key evil-normal-state-map (kbd "gT") 'elscreen-previous)
+(define-key evil-normal-state-map (kbd "gt") 'elscreen-next)
