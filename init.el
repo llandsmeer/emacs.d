@@ -104,6 +104,7 @@
 
 (require 'evil-magit)
 (global-set-key (kbd "C-SPC") 'magit-commit)
+(global-set-key (kbd "M-SPC") 'magit-push-current)
 
 ;; auctex
 (add-hook 'LaTeX-mode-hook 'turn-on-auto-fill)
