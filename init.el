@@ -20,7 +20,7 @@
 (add-to-list 'custom-theme-load-path "~/.emacs/themes")
 
 (require 'solarized)
-(load-theme 'monokai-theme t)
+(load-theme 'monokai t)
 
 (let ((default-directory "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
