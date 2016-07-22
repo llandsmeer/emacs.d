@@ -20,11 +20,10 @@
 (add-to-list 'custom-theme-load-path "~/.emacs/themes")
 
 (require 'solarized)
-(load-theme 'mustang t)
+(load-theme 'monokai-theme t)
 
 (let ((default-directory "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
-
 
 (if (member "Terminus" (font-family-list))
     (set-face-font 'default "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"))
