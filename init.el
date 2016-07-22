@@ -1,6 +1,10 @@
 (require 'cl)
 (require 'package)
 
+(require 'server)
+(if (not (server-running-p))
+    (server-start))
+
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
