@@ -5,6 +5,10 @@
 (if (not (server-running-p))
     (server-start))
 
+(require 'exwm)
+(require 'exwm-config)
+(exwm-config-default)
+
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
@@ -15,7 +19,12 @@
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
                         auctex haskell-mode
-                        mustang-theme monokai-theme flatui-theme solarized-theme))
+                        mustang-theme monokai-theme flatui-theme solarized-theme
+                        xelb exwm))
+
+(add-to-list 'load-path "~/.emacs.d/elpa/cl-generic-0.3")
+(add-to-list 'load-path "~/.emacs.d/elpa/xelb-0.8")
+(add-to-list 'load-path "~/.emacs.d/elpa/exwm-0.5")
 
 (dolist (package packages)
   (when (not (package-installed-p package))
