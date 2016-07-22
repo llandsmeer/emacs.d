@@ -29,8 +29,8 @@
 (let ((default-directory "~/.emacs.d/lisp/"))
   (normal-top-level-add-subdirs-to-load-path))
 
-(if (member "Terminus" (font-family-list))
-    (set-face-font 'default "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1"))
+(if (member "Terminus" (font-family-list)) (ignore-errors
+    (set-face-font 'default "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
