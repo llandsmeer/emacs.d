@@ -127,3 +127,12 @@
 (define-key evil-normal-state-map (kbd "C-w x") 'elscreen-kill)
 (define-key evil-normal-state-map (kbd "gT") 'elscreen-previous)
 (define-key evil-normal-state-map (kbd "gt") 'elscreen-next)
+(setq elscreen-tab-display-kill-screen nil)
+(setq elscreen-display-screen-number nil)
+(setq elscreen-tab-display-control nil)
+(setq elscreen-tab-display nil)
+(let ((update-visibility (lambda () (setq elscreen-display-tab
+                            (if (elscreen-one-screen-p) nil t)))))
+      (add-hook 'elscreen-create-hook update-visibility)
+      (add-hook 'elscreen-kill-hook update-visibility)
+      (funcall update-visibility))
