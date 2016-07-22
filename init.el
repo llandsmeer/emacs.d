@@ -14,7 +14,7 @@
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
-                        auctex haskell-mode
+                        auctex haskell-mode elscreen multi-term
                         mustang-theme monokai-theme flatui-theme solarized-theme))
 
 (dolist (package packages)
