@@ -5,30 +5,22 @@
 (if (not (server-running-p))
     (server-start))
 
-(require 'exwm)
-(require 'exwm-config)
-(exwm-config-default)
-
 (add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
 (package-initialize)
 
 (when (not package-archive-contents)
-  (package-refresh-contents))
+  (ignore-errors (package-refresh-contents)))
 
 (defvar packages '(evil evil-surround evil-numbers evil-matchit evil-exchange
                         avy rainbow-delimiters evil-nerd-commenter company web-mode
                         python undo-tree rust-mode racer magit evil-magit
                         auctex haskell-mode
                         mustang-theme monokai-theme flatui-theme solarized-theme
-                        xelb exwm))
-
-(add-to-list 'load-path "~/.emacs.d/elpa/cl-generic-0.3")
-(add-to-list 'load-path "~/.emacs.d/elpa/xelb-0.8")
-(add-to-list 'load-path "~/.emacs.d/elpa/exwm-0.5")
+                        xelb exwm use-package))
 
 (dolist (package packages)
   (when (not (package-installed-p package))
-    (package-install package)))
+    (ignore-errors (package-install package))))
 
 (add-to-list 'custom-theme-load-path "~/.emacs/themes")
 
@@ -145,3 +137,48 @@
       (add-hook 'elscreen-create-hook update-visibility)
       (add-hook 'elscreen-kill-hook update-visibility)
       (funcall update-visibility))
+
+(require 'bind-key)
+
+(when nil
+  (add-to-list 'load-path "~/.emacs.d/elpa/cl-generic-0.3")
+  (add-to-list 'load-path "~/.emacs.d/elpa/xelb-0.8")
+  (add-to-list 'load-path "~/.emacs.d/elpa/exwm-0.5")
+  (require 'exwm)
+  (require 'exwm-config)
+  (require 'exwm-randr)
+  (require 'exwm-systemtray)
+  (add-hook 'exwm-update-class-hook (lambda () (exwm-workspace-rename-buffer exwm-class-name)))
+  (add-hook 'exwm-init-hook #'exwm-config--fix/ido-buffer-window-other-frame)
+  (exwm-enable)
+  (exwm-randr-enable)
+  (exwm-systemtray-enable)
+  (start-process "setxkbmap" nil "setxkbmap"
+                 "-option" "ctrl:nocaps"
+                 "-option" "compose:ralt"
+                 "-option" "altwin:swap_lalt_lwin")
+  (start-process "dropbox" nil "dropbox" "start")
+  (start-process "volumeicon" nil "volumeicon")
+  (start-process "nm-applet" nil "nm-applet")
+  (start-process "octopi-notifier" nil "octopi-notifier")
+  (start-process "i3-focus-overlay" nil "i3-focus-overlay")
+  (start-process "blueberry-tray" nil "blueberry-tray")
+  (start-process "xcape" nil "xcape")
+  (exwm-input-set-key (kbd "s-r") (lambda (command)
+                        (interactive (list (read-shell-command "$ ")))
+                        (start-process-shell-command command nil command)))
+  (exwm-input-set-key (kbd "s-h") 'evil-window-left)
+  (exwm-input-set-key (kbd "s-l") 'evil-window-right)
+  (exwm-input-set-key (kbd "s-k") 'evil-window-up)
+  (exwm-input-set-key (kbd "s-j") 'evil-window-down)
+  (exwm-input-set-key (kbd "C-s-h") 'evil-window-move-far-left)
+  (exwm-input-set-key (kbd "C-s-l") 'evil-window-move-far-right)
+  (exwm-input-set-key (kbd "C-s-k") 'evil-window-move-very-top)
+  (exwm-input-set-key (kbd "C-s-j") 'evil-window-move-very-bottom)
+  (exwm-input-set-key (kbd "s-o") (lambda (cmd) (interactive (start-process-shell-command "luakit" nil "luakit"))))
+  (exwm-input-set-key (kbd "s-p") (lambda (cmd) (interactive (start-process-shell-command "thunar" nil "thunar"))))
+  (exwm-input-set-key (kbd "s-v") 'evil-window-vsplit)
+  (exwm-input-set-key (kbd "s-f") (lambda (cmd) (interactive (exwm-layout-set-fullscreen (not exwm--fullscreen)))))
+  (exwm-input-set-key (kbd "s-SPC") (lambda (cmd) (interactive (start-process-shell-command "lxterminal" nil "lxterminal"))))
+  (exwm-input-set-key (kbd "s-c") 'evil-window-delete)
+  (exwm-input-set-key (kbd "s-s") 'evil-window-split))
