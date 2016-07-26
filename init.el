@@ -16,6 +16,7 @@
                         python undo-tree rust-mode racer magit evil-magit
                         auctex haskell-mode elscreen multi-term tuareg
                         mustang-theme monokai-theme flatui-theme solarized-theme
+                        pydoc
                         xelb exwm use-package))
 
 (dolist (package packages)
@@ -56,9 +57,12 @@
 (setq whitespace-style '(face tabs trailing tab tab-mark))
 
 (require 'python)
-(add-hook 'python-mode 'run-python)
 (setq python-shell-interpreter "ipython3")
 (setq python-shell-interpreter-args "-i")
+(add-hook 'python-mode-hook (lambda ()
+        (run-python "ipython3 -i")))
+(add-hook 'python-mode-hook (lambda ()
+        (define-key python-mode-map (kbd "C-c C-/") 'pydoc-at-point)))
 
 (require 'undo-tree)
 (setq undo-tree-auto-save-history 1)
