@@ -69,6 +69,8 @@
 (setq undo-tree-history-directory-alist '(("." . "~/.emacs.d/undo")))
 
 (require 'racer)
+(setq racer-rust-src-path "~/rustlib/rustc-1.7.0")
+(setq racer-cmd "~/.cargo/bin/racer")
 (add-hook 'rust-mode-hook #'racer-mode)
 
 (require 'company)
