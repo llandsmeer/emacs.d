@@ -16,7 +16,8 @@
                         python undo-tree rust-mode racer magit evil-magit
                         auctex haskell-mode elscreen multi-term tuareg
                         mustang-theme monokai-theme flatui-theme solarized-theme
-                        pydoc markdown-mode graphviz-dot-mode
+                        pydoc markdown-mode graphviz-dot-mode clojure-mode
+                        helm
                         xelb exwm use-package))
 
 (dolist (package packages)
@@ -34,6 +35,12 @@
 (if (member "Terminus" (font-family-list)) (ignore-errors
     ;; (set-face-font 'default "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")
 ))
+
+(ignore-errors
+    (set-face-font 'default "-ADBE-Helvetica Neue LT Std-normal-normal-normal-*-16-*-*-*-*-0-iso10646-1")
+    (set-face-font 'org-meta-line "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")
+    (set-face-font 'org-table "-xos4-Terminus-normal-normal-normal-*-16-*-*-*-c-80-iso10646-1")
+)
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)
@@ -160,6 +167,19 @@
       (add-hook 'elscreen-kill-hook update-visibility)
       (funcall update-visibility)))
 
+;; (add-hook 'emacs-startup-hook
+;;     (lambda ()
+;;         (cd default-directory)
+;;         (eshell)))
+
+;; (add-hook 'eshell-mode-hook
+;;     '(lambda () (
+;;         (define-key eshell-command-map (kbd "C-l") '(lambda ()
+;;         (let ((inhibit-read-only t))
+;;             (erase-buffer)
+;;             (eshell-send-input)
+;;             ))))))
+
 (require 'bind-key)
 
 (when nil
@@ -204,6 +224,7 @@
   (exwm-input-set-key (kbd "s-SPC") (lambda (cmd) (interactive (start-process-shell-command "lxterminal" nil "lxterminal"))))
   (exwm-input-set-key (kbd "s-c") 'evil-window-delete)
   (exwm-input-set-key (kbd "s-s") 'evil-window-split))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -251,7 +272,7 @@
     ("#dc322f" "#cb4b16" "#b58900" "#546E00" "#B4C342" "#00629D" "#2aa198" "#d33682" "#6c71c4")))
  '(package-selected-packages
    (quote
-    (nasm-mode toml-mode elixir-mode web-mode use-package tuareg solarized-theme rainbow-identifiers rainbow-delimiters racer pydoc mustang-theme multi-term monokai-theme molokai-theme moe-theme markdown-mode haskell-mode graphviz-dot-mode flatui-theme exwm evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-exchange elscreen distinguished-theme company avy autopair auctex)))
+    (gnuplot-mode svg clojure-mode helm-pydoc helm nasm-mode toml-mode elixir-mode web-mode use-package tuareg solarized-theme rainbow-identifiers rainbow-delimiters racer pydoc mustang-theme multi-term monokai-theme molokai-theme moe-theme markdown-mode haskell-mode graphviz-dot-mode flatui-theme exwm evil-surround evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-exchange elscreen distinguished-theme company avy autopair auctex)))
  '(pos-tip-background-color "#eee8d5")
  '(pos-tip-foreground-color "#586e75")
  '(smartrep-mode-line-active-bg (solarized-color-blend "#859900" "#eee8d5" 0.2))
